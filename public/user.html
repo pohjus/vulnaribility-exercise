@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <script>
+      async function fetchUserProfile() {
+        try {
+          const userId = document.getElementById("user-id").value;
+          const response = await fetch(`/user?id=${userId}`);
+          const data = await response.json();
+          const profileDiv = document.getElementById("profile");
+          profileDiv.innerHTML = JSON.stringify(data, null, 2);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h2>User Profile</h2>
+    <input type="number" id="user-id" placeholder="Enter user ID" />
+    <button onclick="fetchUserProfile()">Get Profile</button>
+    <div id="profile"></div>
+  </body>
+</html>
